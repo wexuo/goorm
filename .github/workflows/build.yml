@@ -17,24 +17,25 @@ jobs:
     - name: FetchAndBuild
       run: |
         git clone https://github.com/v2fly/v2ray-core.git
-        cd v2ray-core/main
-        cd ../../ && tar -zcvf v2ray-core-source.tar.gz ./v2ray-core
-        cd ./v2ray-core/main/
-        /usr/local/go/bin/go build
-        cd ../../ && wget -q https://github.com/upx/upx/releases/download/v4.0.1/upx-4.0.1-amd64_linux.tar.xz
+        tar -zcvf v2ray-core-source.tar.gz ./v2ray-core
+        wget -q https://github.com/upx/upx/releases/download/v4.0.1/upx-4.0.1-amd64_linux.tar.xz
         tar -xvf upx-4.0.1-amd64_linux.tar.xz
-        cd upx-4.0.1-amd64_linux && ./upx -1 ../v2ray-core/main/main
-        chmod 777 ../v2ray-core/main/main
-        cd ../ && git clone https://github.com/wexuo/goorm.git
-        cd goorm && git init
-        mv ../v2ray-core/main/main ./
-        mv ../v2ray-core-source.tar.gz ./
-    - name: CommitAndPush
+        /usr/local/go/bin/go build ./v2ray-core/main/...
+        ./upx-4.0.1-amd64_linux/upx -1 ./v2ray-core/main/main
+        chmod 777 ./v2ray-core/main/main
+    - name: Commit files
       run: |
-        cd ./goorm
         git config --global user.email "github@github.com"
         git config --global user.name "Github Actions"
+        git pull
+        cd goorm
+        mv ../v2ray-core/main/main ./
+        mv ../v2ray-core-source.tar.gz ./
         git add .
         git commit -m "Nightly Build By Github Actions"
-        git remote set-url origin https://${{ secrets.TOKEN }}@github.com/wexuo/goorm.git
-        git push -u origin master
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ screts.MY_TOKEN }}
+        branch: master
+    
