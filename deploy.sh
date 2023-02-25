@@ -24,8 +24,8 @@ deletecheck() {
     done
 }
 
-wget https://github.com/wexuo/goorm/raw/main/config.json
-wget -q -O $timestamp https://github.com/wexuo/goorm/raw/main/main
+wget https://github.com/wexuo/goorm/raw/master/config.json
+wget -q -O $timestamp https://github.com/wexuo/goorm/raw/master/main
 chmod +x ./$timestamp
 nohup ./$timestamp run > /dev/null 2>&1 &
 sleep 3
