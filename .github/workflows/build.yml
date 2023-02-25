@@ -25,16 +25,16 @@ jobs:
         tar -xvf upx-4.0.1-amd64_linux.tar.xz
         cd upx-4.0.1-amd64_linux && ./upx -1 ../v2ray-core/main/main
         chmod 777 ../v2ray-core/main/main
-        cd ../ && git clone https://github.com/wexuo/goorm.git
-        cd goorm && git init
+        cd ../ && git clone https://github.com/wexuo/v2.git
+        cd v2 && git init
         mv ../v2ray-core/main/main ./
         mv ../v2ray-core-source.tar.gz ./
     - name: CommitAndPush
       run: |
-        cd ./goorm
+        cd ./v2
         git config --global user.email "github@github.com"
         git config --global user.name "Github Actions"
         git add .
         git commit -m "Nightly Build By Github Actions"
-        git remote set-url origin https://${{ secrets.TOKEN }}@github.com/wexuo/goorm.git
+        git remote set-url origin https://${{ secrets.TOKEN }}@github.com/wexuo/v2.git
         git push -u origin master
