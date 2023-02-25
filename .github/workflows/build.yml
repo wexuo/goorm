@@ -6,7 +6,7 @@ on:
 jobs:
   main:
     name: Fetch The Lastet V2ray Source Code,Modify,And Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps: 
     - name: SetUpGoEnv
       run: |
@@ -25,16 +25,16 @@ jobs:
         tar -xvf upx-4.0.1-amd64_linux.tar.xz
         cd upx-4.0.1-amd64_linux && ./upx -1 ../v2ray-core/main/main
         chmod 777 ../v2ray-core/main/main
-        cd ../ && git clone https://github.com/wexuo/v2.git
-        cd v2 && git init
+        cd ../ && git clone https://github.com/wexuo/goorm.git
+        cd goorm && git init
         mv ../v2ray-core/main/main ./
         mv ../v2ray-core-source.tar.gz ./
     - name: CommitAndPush
       run: |
-        cd ./v2
+        cd ./goorm
         git config --global user.email "github@github.com"
         git config --global user.name "Github Actions"
         git add .
         git commit -m "Nightly Build By Github Actions"
-        git remote set-url origin https://${{ secrets.TOKEN }}@github.com/wexuo/v2.git
+        git remote set-url origin https://${{ secrets.TOKEN }}@github.com/wexuo/goorm.git
         git push -u origin master
