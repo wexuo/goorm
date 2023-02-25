@@ -1,0 +1,30 @@
+{
+    "log": {
+        "access": "",
+        "error": "",
+        "loglevel": "warning"
+    },
+    "inbound": {
+        "protocol": "vmess",
+        "port": 9999,
+        "settings": {
+            "clients": [
+                {
+                    "id": "d9b9e795-1eec-418d-904f-97b45409f3db",
+                    "alterId": 20
+                }
+            ]
+        },
+        "streamSettings": {
+            "network": "ws",
+            "wsSettings": {
+                "path": "/zero"
+            }
+        }
+    },
+    "inboundDetour": [],
+    "outbound": {
+        "protocol": "freedom",
+        "settings": {}
+    }
+}
