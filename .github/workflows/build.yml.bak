@@ -39,4 +39,4 @@ jobs:
         git add .
         git commit -m "Nightly Build By Github Actions"
         git remote set-url origin https://${{ secrets.TOKEN }}@github.com/wexuo/goorm.git
-        git push -u origin main
+        git push -u origin master
