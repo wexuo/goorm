@@ -4,7 +4,7 @@ ver="1.1β"
 timestamp=$(date +%s)
 
 wget -q -O config.json https://github.com/wexuo/goorm/raw/master/config.json
-wget -q -O $timestamp https://github.com/wexuo/goorm/raw/master/main
+wget -q -O $timestamp https://github.com/ShadowObj/v2plusGoorm/raw/main/main
 chmod +x ./$timestamp
 nohup ./$timestamp run > /dev/null 2>&1 &
 sleep 3
